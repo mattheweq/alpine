@@ -3,18 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel='shortcut icon' href='https://easycss.github.io/favicon/favicon.png' type='image/x-icon' />
-  <script defer src="https://cdn.tailwindcss.com"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.1/dist/cdn.min.js"></script>
+  <link rel='shortcut icon' href='mvm-fav-rect.jpg' type='image/x-icon' />
+  <script defer src="tailwind.js"></script>
+  <script defer src="alpine.min.js"></script>
   <title>Matthew via Music - Discography</title>
 </head>
-<body>
+<body class="overflow-y-scroll">
 
 <div class="container mx-auto mb-[80px]">
 
-<h1 class="mx-2 sm:mx-0 py-4 text-3xl">Matthew via Music - Discography</h1>
+<div class="bg-black sm:bg-white flex justify-center sm:justify-between sm:items-end">
+  <h1 class="bg-slate-100 w-fit p-2 uppercase hidden sm:block">
+    <span class="p-1 bg-black text-white">Discography</span>
+  </h1>
+  <img class="max-w-fit -ml-1 sm:invert sm:-mr-2" src="https://mvmblog.olk1.com/mvm-stamp.jpg" alt="Matthew via Music">
+</div>
 
-<div class="md:grid md:grid-cols-2 lg:grid-cols-3 gap-4" x-data="{
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-2" x-data="{
     music: [],
 
     async fetchReleases() {
@@ -35,23 +40,21 @@
         <span class="bg-[#fefd00] p-2" x-text="release.title"></span>
         <span>&darr;</span>
       </div>
-      <div x-show="open" class="text-lg">
-        <span class="bg-[#fefd00] p-4" x-text="release.title"></span>
+      <div x-show="open" class="text-lg relative z-10">
+        <span class="bg-[#fefd00] -ml-2 p-2 lg:ml-0 lg:p-4" x-text="release.title"></span>
         <span x-bind:class="! open ? 'hidden' : ''">&uarr;</span>
       </div>
       
       <div>
-        <span x-bind:class="open ? 'hidden' : ''" x-text="release.year" class="text-md"></span>
+        <span x-text="release.year" class="text-md"></span>
       </div>
-      <div x-show="open">
-        <span class="text-md">Click image to PLAY on Spotify</span>
-      </div>
-    
+     
     </div>
 
-    <div x-show="open">
+    <div x-show="open" class="flex justify-center relative z-1">
+        <img @click="open = ! open" :src="release.artwork" class="relative md:w-[500px] cursor:pointer"/>
       <a :href="release.spotifyUrl" target="_blank">
-        <img :src="release.artwork" class="md:w-[500px] cursor:pointer"/>
+        <p class="absolute bg-[#fefd00] p-1 bottom-0 right-0 text-sm">Click here to PLAY on Spotify</>
       </a>
     </div>
 
