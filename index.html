@@ -14,19 +14,15 @@
 
 <h1 class="mx-2 sm:mx-0 py-4 text-3xl">Matthew via Music - Discography</h1>
 
-<!-- <div class="md:grid md:grid-cols-2 lg:grid-cols-3 gap-4" x-data="{music: []}" x-init="{music} = await(await fetch('https://mvmdiscography.github.io/data.json')).json()"> -->
-
-
 <div class="md:grid md:grid-cols-2 lg:grid-cols-3 gap-4" x-data="{
     music: [],
 
     async fetchReleases() {
       const response = await fetch('https://mvmdiscography.github.io/data.json');
       const data = await response.json();
-      <!-- console.table(data.music.releases); -->
+
       this.music = data.music.releases.reverse();
     }
-
 }" x-init="fetchReleases()">
 
 
@@ -61,8 +57,6 @@
 
 </div>
 </template>
-
-
 
 
 </div>
