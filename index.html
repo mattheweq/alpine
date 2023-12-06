@@ -23,10 +23,10 @@
     music: [],
 
     async fetchReleases() {
-      const response = await fetch('https://mvmdiscography.github.io/data.json');
+      const response = await fetch('https://mvmapi.olk1.com/albums');
       const data = await response.json();
 
-      this.music = data.music.releases.reverse();
+      this.music = data.reverse();
     }
 }" x-init="fetchReleases()">
 
